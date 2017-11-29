@@ -8,7 +8,7 @@
 # Run this script with sudo!
 
 # Install dependencies (-y for auto 'yes').
-apt-get install windbind samba smbclient krb5-user libpam-winbind libnss-winbind -y
+apt-get install winbind samba smbclient krb5-user libpam-winbind libnss-winbind -y
 
 # Modify smb.conf: configure for auth to our domain.
 cat <<EOF > /etc/samba/smb.conf

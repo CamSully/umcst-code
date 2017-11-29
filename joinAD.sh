@@ -66,7 +66,7 @@ systemctl enable winbind
 #Create home directories for all users. Don't seem to be created automatically?
 for i in $( wbinfo -u ); do
 	mkdir -p /home/$WORKGROUP/$i
-	chown -R /home/$WORKGROUP/$i $i
+	chown -R $i /home/$WORKGROUP/$i
 done
 
 

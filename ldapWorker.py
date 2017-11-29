@@ -21,6 +21,11 @@ def ldapAuthen(ldapServer, user, passwd):
         l.simple_bind_s(user, passwd)
         print ("LDAP object bound")
 
+	res = l.search_s("CN=Users,DC=ctf,DC=org", ldap.SCOPE_SUBTREE, "(objectClass=User)")
+	# Print all users.
+	for dn, entry in res:
+	    print dn
+
         # Exit after authentication
         l.unbind_s()
         print ("Unbound")

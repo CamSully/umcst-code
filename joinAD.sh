@@ -40,10 +40,10 @@ cat <<EOF > /etc/samba/smb.conf
     winbind offline logon = true
 EOF
 service smbd restart
-service winbind restart
 # Join the server to the domain (will query for pass)
 net ads join -U queenbee
 
+service winbind restart
 # Update pam to enable Windows authentication. 
 pam-auth-update
 # Edit config files for authentication.

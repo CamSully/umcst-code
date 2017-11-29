@@ -6,6 +6,8 @@
 
 # Prerequisite: configure /etc/resolv.conf - set AD DC in nameserver and domain in search.
 # Run this script with sudo!
+# dialog box: default Kerberos Realm: domain name in all caps with ending.
+# To confirm connected to domain: wbinfo -u
 
 # Install dependencies (-y for auto 'yes').
 apt-get install winbind samba smbclient krb5-user libpam-winbind libnss-winbind -y
@@ -13,9 +15,9 @@ apt-get install winbind samba smbclient krb5-user libpam-winbind libnss-winbind 
 # Modify smb.conf: configure for auth to our domain.
 cat <<EOF > /etc/samba/smb.conf
 [global]
-    workgroup = UMCSTLAB
+    workgroup = HONEYPAQ
     security = ads
-    realm = UMCSTLAB.NET
+    realm = HONEYPAQ.COM
     domain master = no
     local master = no
     preferred master = no
@@ -40,7 +42,7 @@ EOF
 service smbd restart
 service winbind restart
 # Join the server to the domain (will query for pass)
-net ads join -U Administrator
+net ads join -U queenbee
 
 # Update pam to enable Windows authentication. 
 pam-auth-update
